@@ -37,23 +37,23 @@ def turn_lights_on(speed):
     if WEATHER.hot:
         RED.set_brightness(200)
         GREEN.set_brightness(55)
-        BLE.set_brightness(55)
+        BLUE.set_brightness(55)
     elif WEATHER.warm:
         RED.set_brightness(200)
         GREEN.set_brightness(100)
-        BLE.set_brightness(100)
+        BLUE.set_brightness(100)
     elif WEATHER.cold:
         RED.set_brightness(55)
         GREEN.set_brightness(55)
-        BLE.set_brightness(200)
+        BLUE.set_brightness(200)
     elif WEATHER.freezing:
         RED.set_brightness(100)
         GREEN.set_brightness(100)
-        BLE.set_brightness(255)
+        BLUE.set_brightness(255)
     else:
         RED.set_brightness(0)
         GREEN.set_brightness(0)
-        BLE.set_brightness(255)
+        BLUE.set_brightness(255)
 
     set_pwm_cycle()
 
