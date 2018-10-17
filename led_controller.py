@@ -1,6 +1,7 @@
 from datetime import datetime, time
 from time import sleep
 from led import Led
+from weather import WeatherAPI
 import pigpio
 import atexit
 
@@ -12,6 +13,7 @@ PI = pigpio.pi()
 RED = Led(17)
 GREEN = Led(22)
 BLUE = Led(24)
+WEATHER = WeatherAPI
 
 def day_time():
 
@@ -32,7 +34,27 @@ def set_pwm_cycle():
     PI.set_PWM_dutycycle(BLUE.get_pin(), BLUE.get_brightness())
 
 def turn_lights_on(speed):
-    RED.set_brightness(255);
+    if WEATHER.hot:
+        RED.set_brightness(200)
+        GREEN.set_brightness(55)
+        BLE.set_brightness(55)
+    elif WEATHER.warm:
+        RED.set_brightness(200)
+        GREEN.set_brightness(100)
+        BLE.set_brightness(100)
+    elif WEATHER.cold:
+        RED.set_brightness(55)
+        GREEN.set_brightness(55)
+        BLE.set_brightness(200)
+    elif WEATHER.freezing:
+        RED.set_brightness(100)
+        GREEN.set_brightness(100)
+        BLE.set_brightness(255)
+    else:
+        RED.set_brightness(0)
+        GREEN.set_brightness(0)
+        BLE.set_brightness(255)
+
     set_pwm_cycle()
 
 def turn_lights_off(speed):

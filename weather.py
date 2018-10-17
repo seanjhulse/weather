@@ -22,11 +22,37 @@ class WeatherAPI:
 
     return self.data['main']['temp']
 
+  def hot(self):
+    if self.data is None:
+      return False 
+    
+    temp = self.data['main']['temp']
+    return temp >= 80
+  
+  def warm(self):
+    if self.data is None:
+      return False 
+    
+    temp = self.data['main']['temp']
+    return temp >= 60 and temp < 80
 
+  def cold(self):
+    if self.data is None:
+      return False 
+    
+    temp = self.data['main']['temp']
+    return temp >= 40 and temp < 60
 
+  def freezing(self):
+    if self.data is None:
+      return False 
+    
+    temp = self.data['main']['temp']
+    return temp >= 0 and temp < 40
 
-
-
-print "Running..."
-weather = WeatherAPI()
-print weather.get_temperature()
+  def dead(self):
+    if self.data is None:
+      return False 
+    
+    temp = self.data['main']['temp']
+    return temp < 0 
